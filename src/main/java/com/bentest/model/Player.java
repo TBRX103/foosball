@@ -5,12 +5,20 @@
  */
 package com.bentest.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author ben.schellenberger
  */
+@Entity
 public class Player {
 
+    @Id
+    @GeneratedValue( strategy = GenerationType.AUTO )
     private long playerId;
 
     private String firstName;
@@ -82,6 +90,11 @@ public class Player {
 
     public void setAge( String age ) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder().append( firstName ).append( " " ).append( lastName ).append( " Age:" ).append( age ).toString();
     }
 
 }
