@@ -46,7 +46,7 @@ public class RepoApplication {
 
             // fetch an individual customer by ID
             Player player = repository.findOne( 1L );
-            log.info( "Customer found with findOne(1L):" );
+            log.info( "Players found with findOne(1L):" );
             log.info( "--------------------------------" );
             log.info( player.toString() );
             log.info( "" );
@@ -54,8 +54,8 @@ public class RepoApplication {
             // fetch customers by last name
             log.info( "Customer found with findByLastName('Bauer'):" );
             log.info( "--------------------------------------------" );
-            for ( Player bauer : repository.findByLastName( "Morris" ) ) {
-                log.info( bauer.toString() );
+            for ( Player morris : repository.findByLastName( "Morris" ) ) {
+                log.info( morris.toString() );
             }
             log.info( "" );
         };
