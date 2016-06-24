@@ -1,0 +1,7 @@
+com\bentest\controllers\PlayerController.class
+com\bentest\services\PlayerService.class
+com\bentest\model\Account.class
+com\bentest\services\PlayerServiceImpl.class
+com\bentest\model\Player.class
+com\bentest\controllers\ErrorPageController.class
+com\bentest\BentestApplication.class
