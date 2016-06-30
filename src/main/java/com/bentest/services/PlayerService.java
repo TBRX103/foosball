@@ -16,7 +16,7 @@ public interface PlayerService {
 
     public List<Player> getAllPlayers();
 
-    public void savePlayer( Player player );
+    public Player savePlayer( Player player );
 
     public Player getPlayerById( long id );
 

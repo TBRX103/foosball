@@ -57,7 +57,7 @@ public class PlayerController {
         playerService.savePlayer( player );
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation( ucBuilder.path( "/player/{id}" ).buildAndExpand( player.getPlayerId() ).toUri() );
+        headers.setLocation( ucBuilder.path( "/player/{id}" ).buildAndExpand( player.getId() ).toUri() );
         return new ResponseEntity<>( headers, HttpStatus.CREATED );
     }
 

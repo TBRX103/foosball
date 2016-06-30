@@ -5,10 +5,14 @@
  */
 package com.bentest.model;
 
+import org.springframework.data.repository.CrudRepository;
+
 /**
  *
  * @author ben.schellenberger
  */
-public class Table {
+public interface GameRepository extends CrudRepository<Game, Long> {
+
+    public Game findGameById( long id );
 
 }

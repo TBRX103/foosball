@@ -19,13 +19,13 @@ public class Player {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    private long playerId;
+    private long id;
 
     private String firstName;
 
     private String lastName;
 
-    private String alias;
+    private String playerAlias;
 
     private boolean displayAliasOnly;
 
@@ -35,21 +35,21 @@ public class Player {
 
     }
 
-    public Player( long playerId, String firstName, String lastName, String alias, boolean displayAliasOnly, String age ) {
-        this.playerId = playerId;
+    public Player( String firstName, String lastName, String alias, boolean displayAliasOnly, String age ) {
+        this.id = -1;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.alias = alias;
+        this.playerAlias = alias;
         this.displayAliasOnly = displayAliasOnly;
         this.age = age;
     }
 
-    public long getPlayerId() {
-        return playerId;
+    public long getId() {
+        return id;
     }
 
-    public void setPlayerId( long playerId ) {
-        this.playerId = playerId;
+    public void setId( long id ) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -68,12 +68,12 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getPlayerAlias() {
+        return playerAlias;
     }
 
-    public void setAlias( String alias ) {
-        this.alias = alias;
+    public void setPlayerAlias( String playerAlias ) {
+        this.playerAlias = playerAlias;
     }
 
     public boolean isDisplayAliasOnly() {

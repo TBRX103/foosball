@@ -5,6 +5,7 @@
  */
 package com.bentest.model;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
@@ -15,6 +16,9 @@ import java.util.List;
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     List<Player> findByLastName( String lastName );
+
+    @Query( value = "SELECT p FROM Player p WHERE p.lastName LIKE ?1 " )
+    List<Player> searchByLastName( String lastName );
 
     List<Player> findByFirstName( String firstName );
 }
