@@ -77,6 +77,7 @@ public class PlayerController {
             System.out.println( "player with id " + id + " not found" );
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );
         }
+        playerService.deletePlayerById( id );
         return new ResponseEntity<>( player, HttpStatus.OK );
     }
 

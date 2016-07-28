@@ -10,8 +10,8 @@ import com.bentest.model.PlayerRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 /**
  *
@@ -21,22 +21,15 @@ import java.util.List;
 public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
-    static PlayerRepository playerRepository;
+    PlayerRepository playerRepository;
 
-    static {
-        populateDummyPlayers();
-    }
-
-    private static List<Player> populateDummyPlayers() {
-        List<Player> list = new ArrayList<>();
-
+    @PostConstruct
+    private void populateDummyPlayers() {
         playerRepository.save( new Player( "Barry", "Morris", "BMoore", false, "26" ) );
         playerRepository.save( new Player( "Phillip", "Morris", "Cancer Man", false, "48" ) );
         playerRepository.save( new Player( "Jerry", "Stamos", "SuperMan", false, "38" ) );
         playerRepository.save( new Player( "Peter", "Lancaster", "Slick Texas Pete", false, "55" ) );
         playerRepository.save( new Player( "Sneaky", "Snarfer", "SNARF!", false, "14" ) );
-
-        return list;
     }
 
     @Override

@@ -5,54 +5,43 @@
  */
 package com.bentest;
 
-import com.bentest.model.Game;
-import com.bentest.model.GameTable;
-import com.bentest.services.GameService;
-import com.bentest.services.PlayerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import java.util.Set;
 
 @SpringBootApplication
 public class RepoApplication {
-
-    @Autowired
-    PlayerService playerService;
-
-    @Autowired
-    GameService gameService;
-    private static final Logger log = LoggerFactory.getLogger( RepoApplication.class );
-
-    public static void main( String[] args ) {
-        SpringApplication.run( RepoApplication.class );
-    }
-
-    @Bean
-    public CommandLineRunner demo() {
-        return (args) -> {
-            {
-
-                Game g = new Game();
-                g.setPlayer1( playerService.getPlayerById( 1 ) );
-                g.setPlayer2( playerService.getPlayerById( 2 ) );
-                g.setGameTable( new GameTable() );
-
-                gameService.saveGame( g );
-            }
-            Set<Game> games = gameService.getAllGames();
-
-            for ( Game g : games ) {
-                System.out.println( g );
-            }
-
-        };
-    }
-
+//
+//    @Autowired
+//    PlayerService playerService;
+//
+//    @Autowired
+//    GameService gameService;
+//    private static final Logger log = LoggerFactory.getLogger( RepoApplication.class );
+//
+//    public static void main( String[] args ) {
+//        SpringApplication.run( RepoApplication.class );
+//    }
+//
+//    @Bean
+//    public CommandLineRunner demo() {
+//        return (args) -> {
+//            {
+//
+//                Game g = new Game();
+//                g.setPlayer1( playerService.getPlayerById( 1 ) );
+//                g.setPlayer2( playerService.getPlayerById( 2 ) );
+//                g.setGameTable( new GameTable() );
+//
+//                gameService.saveGame( g );
+//            }
+//            Set<Game> games = gameService.getAllGames();
+//
+//            for ( Game g : games ) {
+//                System.out.println( g );
+//            }
+//
+//        };
+//    }
+//
 //    @Bean
 //    public CommandLineRunner demo( PlayerRepository repository ) {
 //        return (args) -> {
