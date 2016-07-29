@@ -20,4 +20,5 @@ public interface PlayerRepository extends CrudRepository<Player, Long> {
 
     @Query( value = "SELECT p FROM Player p WHERE UPPER(p.firstName) = UPPER(?1) " )
     List<Player> findByFirstName( String firstName );
+
 }

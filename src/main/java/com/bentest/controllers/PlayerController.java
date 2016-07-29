@@ -28,7 +28,7 @@ import java.util.List;
  * @author ben.schellenberger
  */
 @RestController
-@Api( name = "Player Services", description = "Methods for managing plaers", group = "Players", visibility = ApiVisibility.PUBLIC, stage = ApiStage.ALPHA )
+@Api( name = "Player Services", description = "Methods for managing players", group = "Players", visibility = ApiVisibility.PUBLIC, stage = ApiStage.ALPHA )
 @RequestMapping( "/players" )
 public class PlayerController {
 
@@ -52,7 +52,6 @@ public class PlayerController {
 
     @RequestMapping( value = "/createplayer", method = RequestMethod.POST )
     public ResponseEntity<Void> createPlayer( @RequestBody Player player, UriComponentsBuilder ucBuilder ) {
-        System.out.println( "Creating player " + player.getFirstName() + " " + player.getLastName() );
 
         playerService.savePlayer( player );
 

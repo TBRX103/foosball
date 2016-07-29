@@ -44,12 +44,13 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getPlayerById( long id ) {
-        for ( Player player : getAllPlayers() ) {
-            if ( player.getId() == id ) {
-                return player;
-            }
-        }
-        return null;
+        return playerRepository.findOne( id );
+//        for ( Player player : getAllPlayers() ) {
+//            if ( player.getId() == id ) {
+//                return player;
+//            }
+//        }
+//        return null;
     }
 
     @Override
