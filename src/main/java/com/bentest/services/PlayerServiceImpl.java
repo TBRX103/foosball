@@ -55,7 +55,16 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public void deletePlayerById( long id ) {
         playerRepository.delete( id );
+    }
 
+    @Override
+    public List<Player> findPlayerByFirstName( String firstName ) {
+        return playerRepository.findByFirstName( firstName );
+    }
+
+    @Override
+    public List<Player> findPlayerByLastName( String lastName ) {
+        return playerRepository.findByLastName( lastName );
     }
 
 }

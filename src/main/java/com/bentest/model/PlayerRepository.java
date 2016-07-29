@@ -15,10 +15,9 @@ import java.util.List;
  */
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
+    @Query( value = "SELECT p FROM Player p WHERE UPPER(p.lastName) = UPPER(?1) " )
     List<Player> findByLastName( String lastName );
 
-    @Query( value = "SELECT p FROM Player p WHERE p.lastName LIKE ?1 " )
-    List<Player> searchByLastName( String lastName );
-
+    @Query( value = "SELECT p FROM Player p WHERE UPPER(p.firstName) = UPPER(?1) " )
     List<Player> findByFirstName( String firstName );
 }

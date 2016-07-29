@@ -28,8 +28,8 @@ import java.util.List;
  * @author ben.schellenberger
  */
 @RestController
-@Api( name = "User Services", description = "Methods for managing users", group = "Users", visibility = ApiVisibility.PUBLIC, stage = ApiStage.ALPHA )
-@RequestMapping( "/" )
+@Api( name = "Player Services", description = "Methods for managing plaers", group = "Players", visibility = ApiVisibility.PUBLIC, stage = ApiStage.ALPHA )
+@RequestMapping( "/players" )
 public class PlayerController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class PlayerController {
         return Arrays.asList( new String[]{ "wsdafdasfsadfsadffasdfsadee", "pwpo" } );
     }
 
-    @RequestMapping( value = "/players/{id}", method = RequestMethod.GET )
+    @RequestMapping( value = "/getplayer/{id}", method = RequestMethod.GET )
     public ResponseEntity<Player> getPlayerById( @PathVariable( "id" ) long id ) {
         Player player = playerService.getPlayerById( id );
         if ( player == null ) {
@@ -50,7 +50,7 @@ public class PlayerController {
         return new ResponseEntity<>( player, HttpStatus.OK );
     }
 
-    @RequestMapping( value = "/players", method = RequestMethod.POST )
+    @RequestMapping( value = "/createplayer", method = RequestMethod.POST )
     public ResponseEntity<Void> createPlayer( @RequestBody Player player, UriComponentsBuilder ucBuilder ) {
         System.out.println( "Creating player " + player.getFirstName() + " " + player.getLastName() );
 
@@ -61,7 +61,7 @@ public class PlayerController {
         return new ResponseEntity<>( headers, HttpStatus.CREATED );
     }
 
-    @RequestMapping( value = "/players", method = RequestMethod.GET )
+    @RequestMapping( value = "/listplayers", method = RequestMethod.GET )
     public ResponseEntity<List<Player>> getAllPlayers() {
         List<Player> players = playerService.getAllPlayers();
         if ( players == null || players.isEmpty() ) {
@@ -70,7 +70,7 @@ public class PlayerController {
         return new ResponseEntity<>( players, HttpStatus.OK );
     }
 
-    @RequestMapping( value = "/players/delete/{id}", method = RequestMethod.GET )
+    @RequestMapping( value = "/delete/{id}", method = RequestMethod.GET )
     public ResponseEntity<Player> deletePlayerById( @PathVariable( "id" ) long id ) {
         Player player = playerService.getPlayerById( id );
         if ( player == null ) {
@@ -79,6 +79,24 @@ public class PlayerController {
         }
         playerService.deletePlayerById( id );
         return new ResponseEntity<>( player, HttpStatus.OK );
+    }
+
+    @RequestMapping( value = "/findplayerbyfname/{firstName}", method = RequestMethod.GET )
+    public ResponseEntity<List<Player>> getFindPlayersByFirstName( @PathVariable( "firstName" ) String firstName ) {
+        List<Player> players = playerService.findPlayerByFirstName( firstName );
+        if ( players == null || players.isEmpty() ) {
+            return new ResponseEntity<>( HttpStatus.NO_CONTENT );
+        }
+        return new ResponseEntity<>( players, HttpStatus.OK );
+    }
+
+    @RequestMapping( value = "/findplayerbylname/{lastName}", method = RequestMethod.GET )
+    public ResponseEntity<List<Player>> getFindPlayersByLastName( @PathVariable( "lastName" ) String lastName ) {
+        List<Player> players = playerService.findPlayerByLastName( lastName );
+        if ( players == null || players.isEmpty() ) {
+            return new ResponseEntity<>( HttpStatus.NO_CONTENT );
+        }
+        return new ResponseEntity<>( players, HttpStatus.OK );
     }
 
 }

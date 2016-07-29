@@ -22,4 +22,8 @@ public interface PlayerService {
 
     public void deletePlayerById( long id );
 
+    public List<Player> findPlayerByFirstName( String firstName );
+
+    public List<Player> findPlayerByLastName( String lastName );
+
 }
