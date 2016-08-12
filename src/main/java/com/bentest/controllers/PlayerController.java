@@ -50,14 +50,14 @@ public class PlayerController {
         return new ResponseEntity<>( player, HttpStatus.OK );
     }
 
-    @RequestMapping( value = "/createplayer", method = RequestMethod.POST )
-    public ResponseEntity<Void> createPlayer( @RequestBody Player player, UriComponentsBuilder ucBuilder ) {
+    @RequestMapping( value = "/saveplayer", method = RequestMethod.POST )
+    public ResponseEntity<Player> savePlayer( @RequestBody Player player, UriComponentsBuilder ucBuilder ) {
 
         playerService.savePlayer( player );
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation( ucBuilder.path( "/player/{id}" ).buildAndExpand( player.getId() ).toUri() );
-        return new ResponseEntity<>( headers, HttpStatus.CREATED );
+        headers.setLocation( ucBuilder.path( "/getplayer/{id}" ).buildAndExpand( player.getId() ).toUri() );
+        return new ResponseEntity<>( player, HttpStatus.CREATED );
     }
 
     @RequestMapping( value = "/listplayers", method = RequestMethod.GET )

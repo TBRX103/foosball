@@ -5,6 +5,7 @@
  */
 package com.bentest.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ import javax.persistence.Id;
  * @author ben.schellenberger
  */
 @Entity
-public class Player {
+public class Player implements Serializable {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
@@ -95,6 +96,28 @@ public class Player {
     @Override
     public String toString() {
         return new StringBuilder().append( firstName ).append( " " ).append( lastName ).append( " Age:" ).append( age ).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + (int) ( this.id ^ ( this.id >>> 32 ) );
+        return hash;
+    }
+
+    @Override
+    public boolean equals( Object obj ) {
+        if ( obj == null ) {
+            return false;
+        }
+        if ( getClass() != obj.getClass() ) {
+            return false;
+        }
+        final Player other = (Player) obj;
+        if ( this.id != other.id ) {
+            return false;
+        }
+        return true;
     }
 
 }

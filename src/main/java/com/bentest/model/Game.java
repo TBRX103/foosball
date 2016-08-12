@@ -31,6 +31,10 @@ public class Game {
     @ManyToOne
     GameTable gameTable;
 
+    int player1Score;
+
+    int player2Score;
+
     public Game() {
 
     }
