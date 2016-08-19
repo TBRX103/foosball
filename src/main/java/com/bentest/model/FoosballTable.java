@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author ben.schellenberger
  */
 @Entity
-public class GameTable {
+public class FoosballTable {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
@@ -27,7 +27,7 @@ public class GameTable {
     private String team1;
     private String team2;
 
-    public GameTable() {
+    public FoosballTable() {
 
     }
 

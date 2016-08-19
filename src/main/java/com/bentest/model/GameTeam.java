@@ -5,13 +5,14 @@
  */
 package com.bentest.model;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,8 +26,15 @@ public class GameTeam {
     private Long id;
 
     @ElementCollection( targetClass = Player.class )
-    @OneToOne
-    private Set<Player> teamPlayers;
+    @OneToMany
+    private List<Player> teamPlayers = new ArrayList<>();
+
+    //   @Column( unique = true )
+    private String teamName = "Unnamed Team";
+
+    private String teamLogoUrl;
+
+    private int teamSize = 2;
 
     public Long getId() {
         return id;
@@ -36,12 +44,34 @@ public class GameTeam {
         this.id = id;
     }
 
-    public Set<Player> getTeamPlayers() {
-        return teamPlayers;
+    public List<Player> getTeamPlayers() {
+        return new ArrayList( teamPlayers );
     }
 
-    public void setTeamPlayers( Set<Player> teamPlayers ) {
+    public void setTeamPlayers( ArrayList<Player> teamPlayers ) {
+        if ( teamPlayers.size() > teamSize ) {
+            throw new IllegalArgumentException( "Too many players" );
+        }
         this.teamPlayers = teamPlayers;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName( String teamName ) {
+        this.teamName = teamName;
+    }
+
+    public boolean addTeamPlayer( Player player ) {
+        if ( teamPlayers.size() >= teamSize ) {
+            return false;
+        }
+        return teamPlayers.add( player );
+    }
+
+    public void removeTeamPlayer( Player player ) {
+        teamPlayers.remove( player );
     }
 
 }

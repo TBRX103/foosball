@@ -5,10 +5,12 @@
  */
 package com.bentest.controllers;
 
-import com.bentest.model.Game;
+import com.bentest.model.FoosballGame;
+import com.bentest.model.GameTeam;
 import com.bentest.model.Player;
 import com.bentest.services.GameService;
-import com.bentest.services.GameTableService;
+import com.bentest.services.FoosballTableService;
+import com.bentest.services.GameTeamService;
 import com.bentest.services.PlayerService;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.pojo.ApiStage;
@@ -38,17 +40,27 @@ public class DemoController {
     PlayerService playerService;
 
     @Autowired
-    GameTableService gameTableService;
+    FoosballTableService gameTableService;
+
+    @Autowired
+    GameTeamService gameTeamService;
 
     @RequestMapping( value = "/makegame", method = RequestMethod.GET )
     public ResponseEntity<Void> makeTestGame( UriComponentsBuilder ucBuilder ) {
-        Game game = new Game();
+        FoosballGame game = new FoosballGame();
         Player pl = playerService.getPlayerById( 1 );
-        game.setPlayer1( pl );
-        game.setPlayer2( playerService.getPlayerById( 1 ) );
-        game.setGameTable( gameTableService.getGameTable( 1 ) );
+        Player p2 = playerService.getPlayerById( 2 );
+        Player p3 = playerService.getPlayerById( 3 );
+        Player p4 = playerService.getPlayerById( 4 );
 
-        Game savedGame = gameService.saveGame( game );
+        GameTeam team1 = gameTeamService.findGameTeamByPlayers( pl, p2 );
+        GameTeam team2 = gameTeamService.findGameTeamByPlayers( p3, p4 );
+
+        game.setTeam1( team1 );
+        game.setTeam2( team2 );
+        game.setFoosballTable( gameTableService.getGameTable( 1 ) );
+
+        FoosballGame savedGame = gameService.saveGame( game );
         HttpHeaders headers = new HttpHeaders();
         if ( savedGame != null ) {
             headers.setLocation( ucBuilder.path( "/game/{id}" ).buildAndExpand( savedGame.getId() ).toUri() );

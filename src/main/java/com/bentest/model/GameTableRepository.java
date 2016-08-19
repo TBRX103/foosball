@@ -11,8 +11,8 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author ben.schellenberger
  */
-public interface GameTableRepository extends CrudRepository<GameTable, Long> {
+public interface GameTableRepository extends CrudRepository<FoosballTable, Long> {
 
-    public GameTable findById( long tableId );
+    public FoosballTable findById( long tableId );
 
 }

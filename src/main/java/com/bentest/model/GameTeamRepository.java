@@ -5,14 +5,16 @@
  */
 package com.bentest.model;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author ben.schellenberger
  */
-public interface GameRepository extends CrudRepository<FoosballGame, Long> {
+public interface GameTeamRepository extends CrudRepository<GameTeam, Long> {
 
-    public FoosballGame findGameById( long id );
+    @Query( "select gt from GameTeam gt where ?1 member of gt.teamPlayers AND ?2 member of gt.teamPlayers" )
+    public GameTeam findTeamByPlayers( Player player1, Player player2 );
 
 }

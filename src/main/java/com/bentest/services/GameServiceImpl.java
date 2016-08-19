@@ -5,7 +5,7 @@
  */
 package com.bentest.services;
 
-import com.bentest.model.Game;
+import com.bentest.model.FoosballGame;
 import com.bentest.model.GameRepository;
 import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,17 +27,17 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Set<Game> getAllGames() {
+    public Set<FoosballGame> getAllGames() {
         return Sets.newHashSet( gameRepository.findAll() );
     }
 
     @Override
-    public Game getGameById( long id ) {
+    public FoosballGame getGameById( long id ) {
         return gameRepository.findGameById( id );
     }
 
     @Override
-    public Game saveGame( Game game ) {
+    public FoosballGame saveGame( FoosballGame game ) {
         return gameRepository.save( game );
     }
 

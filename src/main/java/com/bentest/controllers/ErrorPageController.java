@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author ben.schellenberger
  */
 @RestController
-@RequestMapping( "/error" )
+@RequestMapping( "/" )
 public class ErrorPageController implements ErrorController {
 
     public static final String PATH = "/error";

@@ -16,26 +16,26 @@ import javax.persistence.ManyToOne;
  * @author ben.schellenberger
  */
 @Entity
-public class Game {
+public class FoosballGame {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     private long id;
 
     @ManyToOne
-    Player player1;
+    GameTeam team1;
 
     @ManyToOne
-    Player player2;
+    GameTeam team2;
 
     @ManyToOne
-    GameTable gameTable;
+    FoosballTable foosballTable;
 
     int player1Score;
 
     int player2Score;
 
-    public Game() {
+    public FoosballGame() {
 
     }
 
@@ -45,30 +45,6 @@ public class Game {
 
     public void setId( long id ) {
         this.id = id;
-    }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1( Player player1 ) {
-        this.player1 = player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2( Player player2 ) {
-        this.player2 = player2;
-    }
-
-    public GameTable getGameTable() {
-        return gameTable;
-    }
-
-    public void setGameTable( GameTable gameTable ) {
-        this.gameTable = gameTable;
     }
 
     @Override
@@ -86,7 +62,7 @@ public class Game {
         if ( getClass() != obj.getClass() ) {
             return false;
         }
-        final Game other = (Game) obj;
+        final FoosballGame other = (FoosballGame) obj;
         if ( this.id != other.id ) {
             return false;
         }
@@ -95,7 +71,47 @@ public class Game {
 
     @Override
     public String toString() {
-        return new StringBuilder().append( "Game #:" ).append( id ).append( " Player 1: " ).append( player1.toString() ).append( " Player 2: " ).append( player2.toString() ).toString();
+        return new StringBuilder().append( "Game #:" ).append( id ).append( " Team 1: " ).append( team1.getTeamName() ).append( " Team 2: " ).append( team2.getTeamName() ).toString();
+    }
+
+    public GameTeam getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1( GameTeam team1 ) {
+        this.team1 = team1;
+    }
+
+    public GameTeam getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2( GameTeam team2 ) {
+        this.team2 = team2;
+    }
+
+    public FoosballTable getFoosballTable() {
+        return foosballTable;
+    }
+
+    public void setFoosballTable( FoosballTable foosballTable ) {
+        this.foosballTable = foosballTable;
+    }
+
+    public int getPlayer1Score() {
+        return player1Score;
+    }
+
+    public void setPlayer1Score( int player1Score ) {
+        this.player1Score = player1Score;
+    }
+
+    public int getPlayer2Score() {
+        return player2Score;
+    }
+
+    public void setPlayer2Score( int player2Score ) {
+        this.player2Score = player2Score;
     }
 
 }

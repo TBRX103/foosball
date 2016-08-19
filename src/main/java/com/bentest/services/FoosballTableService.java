@@ -5,7 +5,7 @@
  */
 package com.bentest.services;
 
-import com.bentest.model.GameTable;
+import com.bentest.model.FoosballTable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
  * @author ben.schellenberger
  */
 @Service( "gameTableService" )
-public interface GameTableService {
+public interface FoosballTableService {
 
-    public GameTable getGameTable( long id );
+    public FoosballTable getGameTable( long id );
 
-    public GameTable saveGameTable( GameTable gameTable );
+    public FoosballTable saveGameTable( FoosballTable gameTable );
 }

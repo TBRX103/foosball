@@ -5,9 +5,9 @@
  */
 package com.bentest.controllers;
 
-import com.bentest.model.Game;
+import com.bentest.model.FoosballGame;
 import com.bentest.services.GameService;
-import com.bentest.services.GameTableService;
+import com.bentest.services.FoosballTableService;
 import com.bentest.services.PlayerService;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.pojo.ApiStage;
@@ -39,11 +39,11 @@ public class GameController {
     PlayerService playerService;
 
     @Autowired
-    GameTableService gameTableService;
+    FoosballTableService gameTableService;
 
     @RequestMapping( value = "/save", method = RequestMethod.POST )
-    public ResponseEntity<Game> saveGame( @RequestBody Game game, UriComponentsBuilder ucBuilder ) {
-        Game savedGame = gameService.saveGame( game );
+    public ResponseEntity<FoosballGame> saveGame( @RequestBody FoosballGame game, UriComponentsBuilder ucBuilder ) {
+        FoosballGame savedGame = gameService.saveGame( game );
         HttpHeaders headers = new HttpHeaders();
         if ( savedGame != null ) {
             headers.setLocation( ucBuilder.path( "/game/{id}" ).buildAndExpand( savedGame.getId() ).toUri() );
@@ -54,8 +54,8 @@ public class GameController {
     }
 
     @RequestMapping( value = "/game/{id}", method = RequestMethod.GET )
-    public ResponseEntity<Game> getGameById( @PathVariable( "id" ) long id ) {
-        Game game = gameService.getGameById( id );
+    public ResponseEntity<FoosballGame> getGameById( @PathVariable( "id" ) long id ) {
+        FoosballGame game = gameService.getGameById( id );
         if ( game == null ) {
             System.out.println( "game with id " + id + " not found" );
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );

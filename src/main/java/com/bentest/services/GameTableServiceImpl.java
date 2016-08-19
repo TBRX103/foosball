@@ -5,7 +5,7 @@
  */
 package com.bentest.services;
 
-import com.bentest.model.GameTable;
+import com.bentest.model.FoosballTable;
 import com.bentest.model.GameTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,31 +16,35 @@ import javax.annotation.PostConstruct;
  * @author ben.schellenberger
  */
 @Service( "gameTableService" )
-public class GameTableServiceImpl implements GameTableService {
+public class GameTableServiceImpl implements FoosballTableService {
 
     @Autowired
     GameTableRepository gameTableRepository;
 
     @Override
-    public GameTable getGameTable( long id ) {
+    public FoosballTable getGameTable( long id ) {
         return gameTableRepository.findById( id );
     }
 
     @Override
-    public GameTable saveGameTable( GameTable gameTable ) {
+    public FoosballTable saveGameTable( FoosballTable gameTable ) {
         return gameTableRepository.save( gameTable );
     }
 
     @PostConstruct
     private void populateDemoData() {
-        GameTable table = new GameTable();
+        FoosballTable table = new FoosballTable();
         table.setDescription( "The main foosball table made of real wood and features a red and blue team." );
         table.setName( "Main Foosball Table" );
+        table.setTeam1( "Red" );
+        table.setTeam2( "Blue" );
         gameTableRepository.save( table );
 
-        table = new GameTable();
+        table = new FoosballTable();
         table.setDescription( "The secondary foosball table made of particle board and features a silver and black team." );
         table.setName( "Secondary Foosball Table" );
+        table.setTeam1( "Silver" );
+        table.setTeam2( "Black" );
         gameTableRepository.save( table );
     }
 
