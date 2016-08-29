@@ -6,8 +6,8 @@
 package com.bentest.controllers;
 
 import com.bentest.model.FoosballGame;
-import com.bentest.services.GameService;
 import com.bentest.services.FoosballTableService;
+import com.bentest.services.GameService;
 import com.bentest.services.PlayerService;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.pojo.ApiStage;

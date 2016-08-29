@@ -7,6 +7,7 @@ package com.bentest.services;
 
 import com.bentest.model.GameTeam;
 import com.bentest.model.Player;
+import java.util.Set;
 
 /**
  *
@@ -19,5 +20,7 @@ public interface GameTeamService {
     public GameTeam saveGameTeam( GameTeam team );
 
     public GameTeam findById( long id );
+
+    public Set<Long> getAllTeamIds();
 
 }
