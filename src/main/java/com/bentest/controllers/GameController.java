@@ -47,7 +47,7 @@ public class GameController {
     PlayerService playerService;
 
     @Autowired
-    FoosballTableService gameTableService;
+    FoosballTableService foosballTableService;
 
     @Autowired
     GameTeamService gameTeamService;
@@ -110,6 +110,11 @@ public class GameController {
     @RequestMapping( value = "/gamestats/{team1}/{team2}", method = RequestMethod.GET )
     @ResponseBody
     public ResponseEntity<String> getGameStatsBetweenTeams( @PathVariable( "team1" ) long team1, @PathVariable( "team2" ) long team2 ) {
+
+        if ( team1 == team2 ) {
+            return new ResponseEntity<>( team1 + " Is duplicated.", HttpStatus.NOT_FOUND );
+        }
+
         GameTeam t1 = gameTeamService.findById( team1 );
         GameTeam t2 = gameTeamService.findById( team2 );
         if ( t1 == null ) {

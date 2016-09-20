@@ -7,15 +7,18 @@ package com.bentest.services;
 
 import com.bentest.model.FoosballTable;
 import org.springframework.stereotype.Service;
+import java.util.Set;
 
 /**
  *
  * @author ben.schellenberger
  */
-@Service( "gameTableService" )
+@Service( "foosballTableService" )
 public interface FoosballTableService {
 
     public FoosballTable getGameTable( long id );
 
     public FoosballTable saveGameTable( FoosballTable gameTable );
+
+    public Set<Long> getFoosballTableIds();
 }

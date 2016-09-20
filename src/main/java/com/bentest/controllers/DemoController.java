@@ -55,7 +55,7 @@ public class DemoController {
     PlayerService playerService;
 
     @Autowired
-    FoosballTableService gameTableService;
+    FoosballTableService foosballTableService;
 
     @Autowired
     GameTeamService gameTeamService;
@@ -73,7 +73,7 @@ public class DemoController {
 
         game.setTeam1( team1 );
         game.setTeam2( team2 );
-        game.setFoosballTable( gameTableService.getGameTable( 1 ) );
+        game.setFoosballTable( foosballTableService.getGameTable( 1 ) );
 
         FoosballGame savedGame = gameService.saveGame( game );
         HttpHeaders headers = new HttpHeaders();
@@ -125,6 +125,7 @@ public class DemoController {
                 teams.add( gameTeamService.saveGameTeam( team ) );
 
             }
+            List<Long> foosballTableIds = new ArrayList( foosballTableService.getFoosballTableIds() );
 
             //Make games.
             for ( int i = 0; i <= DEMO_GAMES_COUNT; i++ ) {
@@ -141,13 +142,13 @@ public class DemoController {
                 game.setTeam2( t2 );
 
                 boolean team1Wins = random.nextBoolean();
-                game.setPlayer1Score( team1Wins ? 15 : random.nextInt( 15 ) );
-                game.setPlayer2Score( !team1Wins ? 15 : random.nextInt( 15 ) );
+                game.setTeam1Score( team1Wins ? 15 : random.nextInt( 15 ) );
+                game.setTeam2Score( !team1Wins ? 15 : random.nextInt( 15 ) );
 
-                FoosballTable table = gameTableService.getGameTable( random.nextInt( 2 ) );
+                FoosballTable table = foosballTableService.getGameTable( foosballTableIds.get( random.nextInt( foosballTableIds.size() ) ) );
                 game.setFoosballTable( table );
                 gameService.saveGame( game );
-                
+
             }
 
             randomDataInitialized = true;
