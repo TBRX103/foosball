@@ -6,6 +6,7 @@
 package com.bentest.services;
 
 import com.bentest.model.FoosballGame;
+import com.bentest.model.GameTeam;
 import java.util.Set;
 
 /**
@@ -19,5 +20,9 @@ public interface GameService {
     public FoosballGame getGameById( long id );
 
     public FoosballGame saveGame( FoosballGame game );
+
+    public Set<FoosballGame> findAllGamesByTeam( GameTeam team );
+
+    public Set<FoosballGame> findAllGamesBetweeTeams( GameTeam team1, GameTeam team2 );
 
 }

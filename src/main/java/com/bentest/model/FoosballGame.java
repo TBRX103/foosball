@@ -31,9 +31,9 @@ public class FoosballGame {
     @ManyToOne
     FoosballTable foosballTable;
 
-    int player1Score;
+    int team1Score;
 
-    int player2Score;
+    int team2Score;
 
     public FoosballGame() {
 
@@ -99,19 +99,29 @@ public class FoosballGame {
     }
 
     public int getPlayer1Score() {
-        return player1Score;
+        return team1Score;
     }
 
     public void setPlayer1Score( int player1Score ) {
-        this.player1Score = player1Score;
+        this.team1Score = player1Score;
     }
 
     public int getPlayer2Score() {
-        return player2Score;
+        return team2Score;
     }
 
     public void setPlayer2Score( int player2Score ) {
-        this.player2Score = player2Score;
+        this.team2Score = player2Score;
+    }
+
+    public GameTeam getWinningTeam() {
+        if ( team1Score > team2Score ) {
+            return team1;
+        }
+        if ( team2Score > team1Score ) {
+            return team2;
+        }
+        return null;
     }
 
 }
