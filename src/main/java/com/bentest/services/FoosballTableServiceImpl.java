@@ -6,20 +6,21 @@
 package com.bentest.services;
 
 import com.bentest.model.FoosballTable;
-import com.bentest.model.GameTableRepository;
+import com.bentest.model.FoosballTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 
 /**
  *
  * @author ben.schellenberger
  */
-@Service( "gameTableService" )
-public class GameTableServiceImpl implements FoosballTableService {
+@Service( "foosballTableService" )
+public class FoosballTableServiceImpl implements FoosballTableService {
 
     @Autowired
-    GameTableRepository gameTableRepository;
+    FoosballTableRepository gameTableRepository;
 
     @Override
     public FoosballTable getGameTable( long id ) {
@@ -46,6 +47,11 @@ public class GameTableServiceImpl implements FoosballTableService {
         table.setTeam1( "Silver" );
         table.setTeam2( "Black" );
         gameTableRepository.save( table );
+    }
+
+    @Override
+    public Set<Long> getFoosballTableIds() {
+        return gameTableRepository.getFoosballTableIds();
     }
 
 }

@@ -5,14 +5,19 @@
  */
 package com.bentest.model;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import java.util.Set;
 
 /**
  *
  * @author ben.schellenberger
  */
-public interface GameTableRepository extends CrudRepository<FoosballTable, Long> {
+public interface FoosballTableRepository extends CrudRepository<FoosballTable, Long> {
 
     public FoosballTable findById( long tableId );
+
+    @Query( "SELECT ft.id from FoosballTable ft" )
+    public Set<Long> getFoosballTableIds();
 
 }

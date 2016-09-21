@@ -7,6 +7,7 @@ package com.bentest.model;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import java.util.Set;
 
 /**
  *
@@ -16,5 +17,8 @@ public interface GameTeamRepository extends CrudRepository<GameTeam, Long> {
 
     @Query( "select gt from GameTeam gt where ?1 member of gt.teamPlayers AND ?2 member of gt.teamPlayers" )
     public GameTeam findTeamByPlayers( Player player1, Player player2 );
+
+    @Query( "select gt.id from GameTeam gt" )
+    public Set<Long> getAllTeamIds();
 
 }

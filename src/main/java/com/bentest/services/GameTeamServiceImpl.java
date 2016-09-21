@@ -10,6 +10,8 @@ import com.bentest.model.GameTeamRepository;
 import com.bentest.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -41,6 +43,14 @@ public class GameTeamServiceImpl implements GameTeamService {
     @Override
     public GameTeam findById( long id ) {
         return gameTeamRepository.findOne( id );
+    }
+
+    @Override
+    public Set<Long> getAllTeamIds() {
+        Set<Long> set = new HashSet();
+        //  gameTeamRepository.findAll().forEach( team -> set.add( team.getId() ) );
+        // return set;
+        return gameTeamRepository.getAllTeamIds();
     }
 
 }
